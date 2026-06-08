@@ -384,7 +384,7 @@ Evaluation: leave-one-out protocol — last item per user = test, 99 random nega
 | Model  | HR@10 | NDCG@10 | Training Time | Notes                                                      |
 |--------|-------|---------|---------------|------------------------------------------------------------|
 | SVD    | 0.379 | 0.212   | 6s            | Matrix factorization baseline                              |
-| SASRec | 0.418 | 0.227   | 246s          | Sequential model, best epoch 16/20, +10% HR@10 over SVD   |
+| SASRec | 0.418 | 0.219   | 246s          | Sequential model, best epoch 16/20, +10% HR@10 over SVD   |
 
 *Measured on NVIDIA A30. Full results in `benchmark_results.json`.*
 
