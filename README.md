@@ -381,10 +381,12 @@ User history: [movie_1, movie_2, ..., movie_L]
 
 Evaluation: leave-one-out protocol — last item per user = test, 99 random negatives, rank among 100.
 
-| Model  | HR@10 | NDCG@10 | Training Time | Notes                                    |
-|--------|-------|---------|---------------|------------------------------------------|
-| SVD    | 0.312 | 0.178   | 8s            | Matrix factorization baseline            |
-| SASRec | 0.441 | 0.267   | 45s           | Sequential model, +41% HR@10            |
+| Model  | HR@10 | NDCG@10 | Training Time | Notes                                                      |
+|--------|-------|---------|---------------|------------------------------------------------------------|
+| SVD    | 0.379 | 0.212   | 6s            | Matrix factorization baseline                              |
+| SASRec | 0.418 | 0.227   | 246s          | Sequential model, best epoch 16/20, +10% HR@10 over SVD   |
+
+*Measured on NVIDIA A30. Full results in `benchmark_results.json`.*
 
 Run the benchmark yourself:
 

@@ -1,0 +1,37 @@
+{
+  "benchmark": "SASRec vs SVD on MovieLens 100K",
+  "date": "2026-06-08",
+  "hardware": "NVIDIA A30",
+  "dataset": "MovieLens 100K (943 users, 1518 items after remapping)",
+  "protocol": "Leave-one-out, 100-candidate pool (1 positive + 99 random negatives)",
+  "results": {
+    "SVD": {
+      "hr@10": 0.3786,
+      "ndcg@10": 0.2124,
+      "train_time_sec": 5.5,
+      "n_components": 64
+    },
+    "SASRec": {
+      "hr@10_best_epoch": 0.4178,
+      "ndcg@10_best_epoch": 0.2268,
+      "hr@10_final_epoch": 0.4019,
+      "ndcg@10_final_epoch": 0.2220,
+      "best_epoch": 16,
+      "total_epochs": 20,
+      "train_time_sec": 246,
+      "config": {
+        "hidden_dim": 64,
+        "n_heads": 2,
+        "n_layers": 2,
+        "max_seq_len": 50,
+        "dropout": 0.2,
+        "lr": 0.001,
+        "batch_size": 256
+      }
+    }
+  },
+  "comparison": {
+    "hr@10_gain_over_svd": "+10.3% (best epoch)",
+    "ndcg@10_gain_over_svd": "+6.8% (best epoch)"
+  }
+}
