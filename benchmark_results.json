@@ -12,12 +12,12 @@
       "n_components": 64
     },
     "SASRec": {
-      "reported_epoch": 16,
-      "hr@10": 0.4178,
-      "ndcg@10": 0.2190,
-      "note": "Best HR@10 epoch (16/20). Epoch 17 had best NDCG@10=0.2268 at HR@10=0.4146. Final epoch 20: HR@10=0.4019, NDCG@10=0.2220.",
-      "total_epochs": 20,
-      "train_time_sec": 246,
+      "reported_epoch": 56,
+      "hr@10": 0.6638,
+      "ndcg@10": 0.3680,
+      "note": "Best epoch by HR@10 out of 60 epochs trained with patience=8 early stopping. Epoch 57: HR@10=0.6585. Training continued until epoch 60 with no further improvement.",
+      "total_epochs": 60,
+      "train_time_sec": 690,
       "config": {
         "hidden_dim": 64,
         "n_heads": 2,
@@ -30,7 +30,7 @@
     }
   },
   "comparison": {
-    "hr@10_gain_over_svd": "+10.4% (epoch 16)",
-    "ndcg@10_gain_over_svd": "+3.1% (epoch 16)"
+    "hr@10_gain_over_svd": "+75.3% (0.6638 vs 0.3786)",
+    "ndcg@10_gain_over_svd": "+73.3% (0.3680 vs 0.2124)"
   }
 }

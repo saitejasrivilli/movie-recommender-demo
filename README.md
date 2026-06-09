@@ -381,10 +381,10 @@ User history: [movie_1, movie_2, ..., movie_L]
 
 Evaluation: leave-one-out protocol — last item per user = test, 99 random negatives, rank among 100.
 
-| Model  | HR@10 | NDCG@10 | Training Time | Notes                                                      |
-|--------|-------|---------|---------------|------------------------------------------------------------|
-| SVD    | 0.379 | 0.212   | 6s            | Matrix factorization baseline                              |
-| SASRec | 0.418 | 0.219   | 246s          | Sequential model, best epoch 16/20, +10% HR@10 over SVD   |
+| Model  | HR@10  | NDCG@10 | Training Time | Notes                                                                 |
+|--------|--------|---------|---------------|-----------------------------------------------------------------------|
+| SVD    | 0.3786 | 0.2124  | 6s            | Matrix factorization baseline                                         |
+| SASRec | 0.6638 | 0.3680  | ~690s         | Sequential model, best epoch 56/60 (patience=8), +75% HR@10 over SVD |
 
 *Measured on NVIDIA A30. Full results in `benchmark_results.json`.*
 
@@ -394,7 +394,7 @@ Run the benchmark yourself:
 python benchmark_sasrec_vs_svd.py
 ```
 
-Train SASRec standalone (20 epochs, reports HR@10 and NDCG@10 per epoch):
+Train SASRec standalone (60 epochs with early stopping, reports HR@10 and NDCG@10 per epoch):
 
 ```bash
 python train_sasrec.py
@@ -407,7 +407,8 @@ python train_sasrec.py
 - **Sequences**: sorted by timestamp per user, max 50 items
 - **Loss**: BCE with 1 positive + 99 random negatives per training step
 - **Optimizer**: Adam, lr=1e-3, weight decay=1e-5
-- **Epochs**: 20
+- **Epochs**: 60 (early stopping, patience=8)
+- **Best epoch**: 56 (HR@10=0.6638, NDCG@10=0.3680)
 - **Evaluation**: HR@10, NDCG@10 on held-out last item
 
 ### References
