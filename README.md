@@ -186,11 +186,15 @@ loss = 1.0 * CTR + 0.5 * engagement + 0.3 * revenue
 
 ### Speed Benchmarks
 
-| Stage | Operation | Time | Throughput |
-|-------|-----------|------|------------|
-| 1 | Retrieve 500 from 1M ads | <50ms | 20 QPS |
-| 2 | Rank 500 candidates | ~50ms | 20 QPS |
-| **Total** | **End-to-end** | **<100ms** | **10+ QPS** |
+Design targets for the Two-Tower + FAISS + Transformer pipeline (not yet measured end-to-end):
+
+| Stage | Operation | Target | Notes |
+|-------|-----------|--------|-------|
+| 1 | Retrieve 500 from 1M ads | <50ms | FAISS IVF index, GPU-accelerated |
+| 2 | Rank 500 candidates | ~50ms | Transformer ranker, batch inference |
+| **Total** | **End-to-end** | **<100ms** | Design target; run `faiss_retrieval.py` to measure |
+
+**Measured:** SASRec sequential recommendation on MovieLens 100K — see [Model Quality](#-performance) below.
 
 ### Model Quality — Measured (MovieLens 100K, NVIDIA A30)
 
