@@ -192,15 +192,19 @@ loss = 1.0 * CTR + 0.5 * engagement + 0.3 * revenue
 | 2 | Rank 500 candidates | ~50ms | 20 QPS |
 | **Total** | **End-to-end** | **<100ms** | **10+ QPS** |
 
-### Model Quality
+### Model Quality — Measured (MovieLens 100K, NVIDIA A30)
 
-| Metric | Stage 1 | Stage 2 |
-|--------|---------|---------|
-| AUC | 0.75+ | 0.78+ |
-| Hit@100 | 0.85+ | - |
-| NDCG@10 | - | 0.70+ |
+Actual benchmark comparing SASRec (sequential attention) vs SVD (matrix factorization baseline)
+on MovieLens 100K, leave-one-out protocol, 100-candidate pool.
+Full results: [`benchmark_results.json`](benchmark_results.json)
 
-*Performance on Criteo dataset with 45M+ samples*
+| Model | HR@10 | NDCG@10 | Training Time |
+|-------|-------|---------|---------------|
+| SVD (baseline) | 0.3786 | 0.2124 | 6s |
+| **SASRec** | **0.6638** | **0.3680** | ~690s |
+| Gain | **+75.3%** | **+73.3%** | — |
+
+SASRec best epoch: 56/60 (patience=8 early stopping). Dataset: 943 users, 1518 items after remapping.
 
 ## 🎓 Datasets
 
